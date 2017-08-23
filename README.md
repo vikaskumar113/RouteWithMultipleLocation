@@ -2,7 +2,7 @@
 To draw the polyline, you don't need to also add annotations at each coordinate (but you could if you want to).
 
 Creating and adding an MKPolyline and its corresponding MKPolylineView is very similar to MKPolygon and MKPolygonView.
-
+![simulator screen shot 23-aug-2017 12 08 30 pm](https://user-images.githubusercontent.com/16588047/29606644-78acb28c-880c-11e7-8bd2-9d674bb5955b.png)
     
      NSString* apiUrlStr =[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%@,%@&destination=%@,%@&sensor=false",lat,lon, _vendorlat, _vendorlon
                               ];
