@@ -251,14 +251,21 @@
     if (aView==nil) {
         
         aView=[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:annotaionIdentifier];
-        aView.pinColor = MKPinAnnotationColorRed;
+        aView.pinColor = MKPinAnnotationColorGreen;
         aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//    aView.image=[UIImage imageNamed:@"3-star.png"];
-       aView.animatesDrop=TRUE;
+        aView.image=[UIImage imageNamed:@"pin.png"];
+        aView.animatesDrop=TRUE;
         aView.canShowCallout = YES;
-        aView.calloutOffset = CGPointMake(-5, 5);
-    } 
-	
+        aView.calloutOffset = CGPointMake(5, 5);
+        aView.annotation=annotation;
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]] ;
+        imageView.layer.cornerRadius = imageView.frame.size.height /2;
+        imageView.clipsToBounds = true;
+        imageView.layer.borderWidth = 2.0f;
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        [aView addSubview:imageView];
+    }
+    
 	return aView;
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

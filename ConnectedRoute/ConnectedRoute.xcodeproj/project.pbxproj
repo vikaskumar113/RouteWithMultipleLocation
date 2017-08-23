@@ -15,6 +15,7 @@
 		401E85C41F4D45DE0005DC1E /* ConnectedRouteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 401E85C31F4D45DE0005DC1E /* ConnectedRouteTests.m */; };
 		401E85CF1F4D45DE0005DC1E /* ConnectedRouteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 401E85CE1F4D45DE0005DC1E /* ConnectedRouteUITests.m */; };
 		401E85DE1F4D46000005DC1E /* MapDirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 401E85DD1F4D46000005DC1E /* MapDirectionsViewController.m */; };
+		407B9ED51F4D975F00A91C9A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 407B9ED41F4D975F00A91C9A /* pin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		401E85D01F4D45DF0005DC1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		401E85DC1F4D46000005DC1E /* MapDirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDirectionsViewController.h; sourceTree = "<group>"; };
 		401E85DD1F4D46000005DC1E /* MapDirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDirectionsViewController.m; sourceTree = "<group>"; };
+		407B9ED41F4D975F00A91C9A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		401E85A81F4D45DE0005DC1E /* ConnectedRoute */ = {
 			isa = PBXGroup;
 			children = (
+				407B9ED41F4D975F00A91C9A /* pin.png */,
 				401E85AC1F4D45DE0005DC1E /* AppDelegate.h */,
 				401E85AD1F4D45DE0005DC1E /* AppDelegate.m */,
 				401E85DC1F4D46000005DC1E /* MapDirectionsViewController.h */,
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				401E85B91F4D45DE0005DC1E /* LaunchScreen.storyboard in Resources */,
+				407B9ED51F4D975F00A91C9A /* pin.png in Resources */,
 				401E85B61F4D45DE0005DC1E /* Assets.xcassets in Resources */,
 				401E85B41F4D45DE0005DC1E /* Main.storyboard in Resources */,
 			);
