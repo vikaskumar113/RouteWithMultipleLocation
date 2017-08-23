@@ -43,7 +43,7 @@
     theMapView.userTrackingMode=YES;
     theMapView.delegate=self;
     locationManager = [[CLLocationManager alloc] init];
-  //  geocoder = [[CLGeocoder alloc] init];
+  
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     theMapView.showsUserLocation=YES;
@@ -131,9 +131,6 @@
     CLLocationCoordinate2D destCordinate = CLLocationCoordinate2DMake(destLat, destLong);
    
     [self addAnnotationSrcAndDestination:sourceCordinate :destCordinate];
-//    NSArray *steps=[[aary objectAtIndex:0]valueForKey:@"steps"];   
-    
-//    replace lines with this may work
     
     NSMutableArray *polyLinesArray =[[NSMutableArray alloc]initWithCapacity:0];
     
@@ -287,6 +284,7 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+/*
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     CLLocation *currentLocation = userLocation;
@@ -327,26 +325,9 @@
          
      }];
 
-    if (oncezoom==YES) {
-        
-    
-    MKCoordinateRegion mapRegion;
-    mapRegion.center = mapView.userLocation.coordinate;
-    mapRegion.span.latitudeDelta = 0.1;
-    mapRegion.span.longitudeDelta = 0.1;
-    [theMapView setRegion:mapRegion animated: YES];
-    oncezoom=NO;
-    }else
-    {
-      
-    }
-   
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
     
 }
+*/
 
 
 @end
