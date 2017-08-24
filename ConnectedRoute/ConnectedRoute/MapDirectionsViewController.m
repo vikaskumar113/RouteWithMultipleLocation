@@ -35,11 +35,42 @@
 
 - (void)viewDidLoad
 {
-    _vendorlat=@"28.628454";
-    _vendorlon=@"77.376945";
-   
+    
+    NSArray *dictionary = @[
+                                  @{
+                                    @"Source_lat": @"28.6287",
+                                    @"Source_lon": @"77.3208",
+                                    @"Dest_lat": @"28.628454",
+                                    @"Dest_lon": @"77.376945",
+                                    @"S_address": @"Vaishali,Delhi",
+                                    },
+                                  @{
+                                      @"Source_lat": @"28.628454",
+                                      @"Source_lon": @"77.376945",
+                                      @"Dest_lat": @"28.5529",
+                                      @"Dest_lon": @"77.3367",
+                                      @"S_address": @"Noida Sec 63",
+                                      },
+  @{
+                                      @"Source_lat": @"28.5529",
+                                      @"Source_lon": @"77.3367",
+                                      @"Dest_lat": @"28.6276",
+                                      @"Dest_lon": @"77.2784",
+                                      @"S_address": @"Noida Sec 44",
+                                      },
+  @{
+                                      @"Source_lat": @"28.6276",
+                                      @"Source_lon": @"77.2784",
+                                      @"Dest_lat": @"28.6287",
+                                      @"Dest_lon": @"77.3208",
+                                      @"S_address": @"Laxmi Nagar,Delhi",
+                                      },
 
-       oncezoom=YES;
+                                  
+                                
+                                 ];
+
+    
     theMapView.userTrackingMode=YES;
     theMapView.delegate=self;
     locationManager = [[CLLocationManager alloc] init];
@@ -52,8 +83,7 @@
     
     
     [locationManager startUpdatingLocation];
-    NSString *lat = @"28.6287";
-    NSString *lon = @"77.3208";
+   /*
     CLLocationCoordinate2D coord;
     
     coord.latitude=[ self.vendorlat floatValue];
@@ -69,34 +99,36 @@
     
     sourceAnnotation.title=@"Sector 63";
     [theMapView addAnnotation:sourceAnnotation];
+    */
+    for (int i=0; i<dictionary.count; i++) {
+        NSDictionary*dict=[dictionary objectAtIndex:i];
+        NSString*S_lat=[dict valueForKey:@"Source_lat"];
+        NSString*S_lon=[dict valueForKey:@"Source_lon"];
+        NSString*D_lat=[dict valueForKey:@"Dest_lat"];
+        NSString*D_lon=[dict valueForKey:@"Dest_lon"];
+        NSString*address=[dict valueForKey:@"S_address"];
     
-   
-        NSString* apiUrlStr =[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%@,%@&destination=%@,%@&sensor=false",lat,lon, _vendorlat, _vendorlon
+        NSString* apiUrlStr =[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%@,%@&destination=%@,%@&sensor=false",S_lat,S_lon, D_lat, D_lon
                               ];
     
     
     NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:apiUrlStr]];
     [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+        
+        CLLocationCoordinate2D coord;
+        coord.latitude=[S_lat floatValue];
+        coord.longitude=[ S_lon floatValue];
+        MKCoordinateRegion region1;
+        region1.center=coord;
+        region1.span.longitudeDelta=0.2 ;
+        region1.span.latitudeDelta=0.2;
+        [theMapView setRegion:region1 animated:YES];
+        MKPointAnnotation *sourceAnnotation = [[MKPointAnnotation alloc]init];
+        sourceAnnotation.coordinate=coord;
+        sourceAnnotation.title=address;
+        [theMapView addAnnotation:sourceAnnotation];
 
-        
-        NSString* apiUrl =[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%@,%@&destination=%@,%@&sensor=false", _vendorlat, _vendorlon,@"28.5529",@"77.3367"
-                              ];
-        
-        
-        NSData *data1 =[NSData dataWithContentsOfURL:[NSURL URLWithString:apiUrl]];
-        [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data1 waitUntilDone:YES];
-    NSString* api =[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%@,%@&destination=%@,%@&sensor=false",@"28.5529",@"77.3367",@"28.6276",@"77.2784"
-                       ];
-    
-    
-    NSData *data2 =[NSData dataWithContentsOfURL:[NSURL URLWithString:api]];
-    [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data2 waitUntilDone:YES];
-    NSString* api2 =[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%@,%@&destination=%@,%@&sensor=false",@"28.6276",@"77.2784",lat,lon
-                    ];
-    
-    
-    NSData *data3 =[NSData dataWithContentsOfURL:[NSURL URLWithString:api2]];
-    [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data3 waitUntilDone:YES];
+    }
     
 }
 
@@ -150,7 +182,7 @@
 
 -(void)addAnnotationSrcAndDestination :(CLLocationCoordinate2D )srcCord :(CLLocationCoordinate2D)destCord
 {
-    MKPointAnnotation *sourceAnnotation = [[MKPointAnnotation alloc]init];
+ /*   MKPointAnnotation *sourceAnnotation = [[MKPointAnnotation alloc]init];
     MKPointAnnotation *destAnnotation = [[MKPointAnnotation alloc]init];
     sourceAnnotation.coordinate=srcCord;
     destAnnotation.coordinate=destCord;
@@ -167,6 +199,7 @@
     MKCoordinateSpan span;
     region.center=srcCord;
     region.span=span;
+  */
     
 }
 
@@ -232,7 +265,7 @@
             viewForOverlay:(id<MKOverlay>)overlay {
 
     MKPolylineView *overlayView = [[MKPolylineView alloc] initWithOverlay:overlay];
-    overlayView.lineWidth = 10;
+    overlayView.lineWidth = 7;
     overlayView.strokeColor = [UIColor purpleColor];
     overlayView.fillColor = [[UIColor purpleColor] colorWithAlphaComponent:0.1f];
     return overlayView;
@@ -258,7 +291,8 @@
         aView.canShowCallout = YES;
         aView.calloutOffset = CGPointMake(5, 5);
         aView.annotation=annotation;
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin.png"]] ;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)] ;
+        imageView.image=[UIImage imageNamed:@"pin.png"];
         imageView.layer.cornerRadius = imageView.frame.size.height /2;
         imageView.clipsToBounds = true;
         imageView.layer.borderWidth = 2.0f;

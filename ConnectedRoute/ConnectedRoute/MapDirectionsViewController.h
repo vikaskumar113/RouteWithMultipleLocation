@@ -14,7 +14,7 @@
 //} UICGTravelModes;
 @interface MapDirectionsViewController : UIViewController<MKMapViewDelegate ,MKAnnotation ,MKOverlay,UITableViewDataSource,UITableViewDelegate, CLLocationManagerDelegate>
 {
-    UITableView *tblView;
+   
     NSDictionary *dictRouteInfo;
     BOOL oncezoom;
     NSString*shopaddress;
